@@ -1,0 +1,42 @@
+kind: BuildConfig
+metadata:
+  name: image-buildconfig1
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: testacebuild2:latest
+      namespace: s2itry
+      incremental: true
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/aryan-solanki9/CodeRepo3
+    type: Git
+  strategy:
+    sourceStrategy:
+      env:
+        - name: "BUILD_LOGLEVEL"
+          value: "2"
+        - name: LICENSE
+          value: accept
+        - name: MAIN
+          value: testemp  
+      from:
+        kind: ImageStreamTag
+        name: 'aces2i:latest'
+        namespace: s2itry
+        incremental: true
+    type: Source
+  triggers:
+    - github:
+        secret: _4cicOnsQwWI03zCy4WT
+      type: GitHub
+    - generic:
+        secret: j1UawzBQmy6nW8jw2snt
+      type: Generic
+    - type: ConfigChange
