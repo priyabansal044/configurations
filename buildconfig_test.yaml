@@ -1,6 +1,6 @@
 kind: BuildConfig
 metadata:
-  name: image-buildconfig1
+  name: buildconfig_test
 spec:
   failedBuildsHistoryLimit: 5
   nodeSelector: null
